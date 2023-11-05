@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>商品列表</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}" type="text/css">
+    <style>
+        .bike-search {
+            width: 804px;
+            height: 60px;
+            border: 0;
+        }
+
+        .bike-search-left {
+            width: 704px;
+            height: 60px;
+            border: 0;
+            float: left;
+        }
+
+        .bike-search-left-middle {
+            width: 560px;
+            height: 60px;
+            border: 0;
+            margin-left: 72px;
+        }
+
+        .bike-search-left-middle-text {
+            width: 50px;
+            height: 30px;
+            margin-left: 2px;
+            float: left;
+            border-radius: 5px;
+            background: rgba(46, 139, 87, 0.7);
+            border: 0;
+            margin-top: 15px;
+            font-family: "等线 Light";
+        }
+
+        .bike-search-left-middle-input {
+            width: 198px;
+            height: 28px;
+            margin-top: 15px;
+            border-radius: 5px;
+            border: 1px solid #000000;
+            float: left;
+            padding: 0;
+            margin-left: 2px;
+            text-align: center;
+        }
+
+        .bike-search-left-middle-query {
+            width: 50px;
+            height: 30px;
+            margin-left: 2px;
+            float: left;
+            border-radius: 5px;
+            background: rgba(46, 139, 87, 0.7);
+            border: 0;
+            margin-top: 15px;
+            font-family: "等线 Light";
+        }
+
+        .bike-search-right {
+            float: right;
+            width: 100px;
+            height: 60px;
+            text-align: center;
+        }
+
+        .bike-search-right-add {
+            margin-top: 15px;
+            width: 50px;
+            height: 30px;
+            border-radius: 5px;
+            background: rgba(46, 139, 87, 0.7);
+            border: 0;
+            font-family: "等线";
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        td {
+            height: 40px;
+            width: 100px;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            border: 1px solid #eaeaea;
+            border-radius: 5px;
+            font-size: 10px;
+            font-family: "等线";
+        }
+
+        .bike-data {
+            width: 804px;
+            height: 370px;
+        }
+
+        .bike-data-button {
+            width: 40px;
+            height: 20px;
+            border-radius: 3px;
+            background: rgba(46, 139, 87, 0.7);
+            border: 0;
+            line-height: 1px;
+            font-family: "等线";
+        }
+
+        .bike-page {
+            width: 804px;
+            height: 45px;
+            text-align: center;
+        }
+
+        .page-up {
+            width: 60px;
+            height: 30px;
+            float: left;
+            text-align: center;
+            margin-left: 327px;
+            margin-top: 7px;
+            border-radius: 3px;
+            background: rgba(46, 139, 87, 0.7);
+            border: 0;
+            font-family: 等线;
+        }
+
+        .page-now {
+            width: 30px;
+            height: 30px;
+            float: left;
+            line-height: 30px;
+            margin-top: 7px;
+            font-size: 15px;
+            font-family: 楷体;
+        }
+
+        .page-down {
+            width: 60px;
+            height: 30px;
+            float: left;
+            text-align: center;
+            margin-top: 7px;
+            border-radius: 3px;
+            background: rgba(46, 139, 87, 0.7);
+            border: 0;
+            font-family: 等线;
+        }
+    </style>
+</head>
+<body>
+<div class="bike-search">
+    <div class="bike-search-left">
+        <div class="bike-search-left-middle">
+            <form action="/bike/searchBikeOfSuf" method="post">
+                <button class="bike-search-left-middle-text">名称</button>
+                <input class="bike-search-left-middle-input" name="name" type="text">
+                <button class="bike-search-left-middle-text">类型</button>
+                <input class="bike-search-left-middle-input" name="type" type="text">
+                <input class="bike-search-left-middle-query" type="submit" value="查询">
+            </form>
+        </div>
+    </div>
+    <div class="bike-search-right">
+        <a href="/bike/toAdd">
+            <button class="bike-search-right-add">增加</button>
+        </a>
+    </div>
+</div>
+<div class="bike-data">
+    <table>
+        <thead>
+        <tr>
+            <td>唯一标识</td>
+            <td>名称</td>
+            <td>图片</td>
+            <td>价格</td>
+            <td>类型</td>
+            <td>库存</td>
+            <td>销售</td>
+            <td>操作</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="bike : ${bikes}">
+            <td th:text="${bike.id}"></td>
+            <td th:text="${bike.name}"></td>
+            <td th:text="${bike.imgPath}"></td>
+            <td th:text="${bike.price}"></td>
+            <td th:text="${bike.type}"></td>
+            <td th:text="${bike.stockNumber}"></td>
+            <td th:text="${bike.saleNumber}"></td>
+            <td>
+                <div>
+                    <a th:href="@{'/bike/toModify?id='+${bike.id}}">
+                        <button class="bike-data-button">修改</button>
+                    </a>
+                    <a th:href="@{'/bike/deleteBike?id='+${bike.id}}">
+                        <button class="bike-data-button">删除</button>
+                    </a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="bike-page">
+    <a target="show" th:href="@{'/bike/queryBikeListOfSuf?pageNow='+${page.getPrePage()}}">
+        <button class="page-up" th:disabled="${page.getPageNum() == 1}">上一页</button>
+    </a>
+    <div class="page-now" th:text="${page.getPageNum()}"></div>
+    <a target="show" th:href="@{'/bike/queryBikeListOfSuf?pageNow='+${page.getNextPage()}}">
+        <button class="page-down" th:disabled="${page.getPageNum() == page.getPages()}">下一页</button>
+    </a>
+</div>
+</body>
+</html>

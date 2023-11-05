@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户信息</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}" type="text/css">
+    <style>
+        .user {
+            height: 470px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .user_info {
+            width: 400px;
+            height: 246px;
+        }
+
+        .user_info-text {
+            width: 405px;
+            height: 40px;
+            margin-bottom: 1px;
+        }
+
+        .user_info-text-left {
+            width: 98px;
+            height: 38px;
+            float: left;
+            text-align: center;
+            line-height: 40px;
+            font-size: 14px;
+            font-family: 楷体;
+            border-radius: 5px;
+            border: 1px solid #000000;
+        }
+
+        .user_info-text-right {
+            width: 298px;
+            height: 38px;
+            float: left;
+            padding: 0;
+            border-width: thin;
+            border-style: solid;
+            font-size: 14px;
+            font-family: 楷体;
+            border-radius: 5px;
+            margin-left: 1px;
+            text-align: center;
+            background: white;
+            border-color: black;
+        }
+
+        .user_info-text-button {
+            width: 401px;
+            height: 40px;
+            border-radius: 5px;
+            background: rgba(46, 139, 87, 0.7);
+            font-size: 16px;
+            border: 0 solid;
+            font-family: 楷体;
+        }
+    </style>
+</head>
+<body>
+<div class="user">
+    <div class="user_info">
+        <form method="post" th:action="@{'/user/modifyUserInfo?id='+${user.id}}">
+            <div class="user_info-text">
+                <div class="user_info-text-left">账号</div>
+                <div>
+                    <input class="user_info-text-right" disabled name="account" th:value="${user.account}" type="text">
+                </div>
+            </div>
+            <div class="user_info-text">
+                <div class="user_info-text-left">昵称</div>
+                <div>
+                    <input class="user_info-text-right" name="nickname" th:value="${user.nickname}" type="text">
+                </div>
+            </div>
+            <div class="user_info-text">
+                <div class="user_info-text-left">姓名</div>
+                <div>
+                    <input class="user_info-text-right" name="name" th:value="${user.name}" type="text">
+                </div>
+            </div>
+            <div class="user_info-text">
+                <div class="user_info-text-left">电话</div>
+                <div>
+                    <input class="user_info-text-right" name="phone" th:value="${user.phone}" type="text">
+                </div>
+            </div>
+            <div class="user_info-text">
+                <div class="user_info-text-left">地址</div>
+                <div>
+                    <input class="user_info-text-right" name="address" th:value="${user.address}" type="text">
+                </div>
+            </div>
+            <div>
+                <input class="user_info-text-button" type="submit" value="保存">
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

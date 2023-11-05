@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bike.bikeuser.mapper.AdministratorMapper">
+    <insert id="insertAdministrator" parameterType="com.bike.bikecommon.entity.Administrator">
+        insert into administrator
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="account != null and account != ''">
+                account,
+            </if>
+            <if test="password != null and password != ''">
+                password,
+            </if>
+            <if test="nickname != null and nickname != ''">
+                nickname,
+            </if>
+            <if test="name != null and name != ''">
+                name,
+            </if>
+            <if test="phone != null and phone != ''">
+                phone,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="account != null and account != ''">
+                #{account},
+            </if>
+            <if test="password != null and password != ''">
+                #{password},
+            </if>
+            <if test="nickname != null and nickname != ''">
+                #{nickname},
+            </if>
+            <if test="name != null and name != ''">
+                #{name},
+            </if>
+            <if test="phone != null and phone != ''">
+                #{phone},
+            </if>
+        </trim>
+    </insert>
+    <delete id="deleteAdministratorById" parameterType="com.bike.bikecommon.entity.Administrator">
+        delete
+        from administrator
+        where id = #{id}
+    </delete>
+    <update id="updateAdministratorById" parameterType="com.bike.bikecommon.entity.Administrator">
+        update administrator set
+        <if test="account != null and account != ''">
+            account = #{account},
+        </if>
+        <if test="password != null and password != ''">
+            password = #{password},
+        </if>
+        <if test="nickname != null and nickname != ''">
+            nickname = #{nickname},
+        </if>
+        <if test="name != null and name != ''">
+            name = #{name},
+        </if>
+        <if test="phone != null and phone != ''">
+            phone = #{phone}
+        </if>
+        where id = #{id}
+    </update>
+    <select id="selectAdministratorById" parameterType="com.bike.bikecommon.entity.Administrator"
+            resultType="com.bike.bikecommon.entity.Administrator">
+        select *
+        from administrator
+        where id = #{id}
+    </select>
+    <select id="selectAdministratorByAccountAndPassword" resultType="com.bike.bikecommon.entity.Administrator">
+        select *
+        from administrator
+        where account = #{account}
+          and password = #{password}
+    </select>
+    <select id="selectAdministratorList" resultType="com.bike.bikecommon.entity.Administrator">
+        select *
+        from administrator
+    </select>
+    <select id="selectAdministratorListByAttribute" parameterType="com.bike.bikecommon.entity.Administrator"
+            resultType="com.bike.bikecommon.entity.Administrator">
+        select * from administrator where
+        <if test="account != null and account != ''">
+            account like "%"#{account}"%"
+        </if>
+        <if test="password != null and password != ''">
+            password like "%"#{password}"%"
+        </if>
+        <if test="name != null and name != ''">
+            name like "%"#{name}"%"
+        </if>
+    </select>
+</mapper>

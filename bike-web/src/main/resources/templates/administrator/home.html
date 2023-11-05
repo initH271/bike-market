@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>管理员首页</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/header.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/footer.css}" type="text/css">
+    <style>
+        .home-middle {
+            width: 1364px;
+            height: 475px;
+        }
+
+        .home-middle-left {
+            width: 279px;
+            height: 475px;
+            float: left;
+            border: 1px none #000000;
+            border-right-style: solid;
+        }
+
+        .home-middle-left-title {
+            font-size: 16px;
+            text-align: center;
+            width: 280px;
+            height: 39px;
+            line-height: 40px;
+            border: 1px none #000000;
+            border-bottom-style: solid;
+            font-family: 楷体;
+        }
+
+        .home-middle-left-list {
+            width: 280px;
+            height: 435px;
+            padding: 0;
+            margin: 0;
+        }
+
+        .home-middle-left-list-item {
+            width: 280px;
+            height: 39px;
+            border: 0 solid #000000;
+            border-bottom-width: 1px;
+        }
+
+        .home-middle-left-list-item-image {
+            width: 40px;
+            height: 40px;
+            float: left;
+        }
+
+        .home-middle-left-list-item-text {
+            width: 198px;
+            height: 40px;
+            border: 1px solid #000000;
+            border-top: 0;
+            border-bottom: 0;
+            float: left;
+            text-align: center;
+            line-height: 40px;
+            font-size: 14px;
+            font-family: 楷体;
+        }
+
+        .home-middle-show {
+            width: 804px;
+            height: 475px;
+            float: left;
+            border: 0;
+            margin: 0;
+            padding: 0;
+            display: block;
+        }
+
+        .home-middle-right {
+            width: 279px;
+            height: 475px;
+            float: right;
+            border: 1px none #000000;
+            border-left-style: solid;
+        }
+
+        .home-middle-right-title {
+            font-size: 16px;
+            text-align: center;
+            width: 280px;
+            height: 39px;
+            line-height: 40px;
+            border: 1px none #000000;
+            border-bottom-style: solid;
+            font-family: 楷体;
+        }
+
+        .home-middle-right-list {
+            width: 280px;
+            height: 435px;
+            padding: 0;
+            margin: 0;
+        }
+
+        .home-middle-right-list-item {
+            width: 280px;
+            height: 39px;
+            border: 0 solid #000000;
+            border-bottom-width: 1px;
+        }
+
+        .home-middle-right-list-item-image {
+            width: 40px;
+            height: 40px;
+            float: left;
+        }
+
+        .home-middle-right-list-item-text {
+            width: 198px;
+            height: 40px;
+            border: 1px solid #000000;
+            border-top: 0;
+            border-bottom: 0;
+            float: left;
+            text-align: center;
+            line-height: 40px;
+            font-size: 14px;
+            font-family: 楷体;
+        }
+    </style>
+</head>
+<body>
+<div class="home-header">
+    <div class="header-common header-left">
+        <div class="header-common header-left-logo">
+            <img alt="logo" src="/img/logo/logo.png">
+        </div>
+        <div class="header-common header-left-title">
+            <a href="/administrator/toWelcome" target="show">自行车超市平台</a>
+        </div>
+    </div>
+    <div class="header-common header-right">
+        <div class="header-common header-right-text1" th:text="'管理员:'+${session.administratorName}"></div>
+        <div class="header-common header-right-text2">
+            <a href="/administrator/signOut">退出系统</a>
+        </div>
+    </div>
+</div>
+<div class="home-middle">
+    <div class="home-middle-left">
+        <div class="home-middle-left-title">前端界面管理</div>
+        <ul class="home-middle-left-list">
+            <li class="home-middle-left-list-item">
+                <a href="#">
+                    <img alt="image" class="home-middle-left-list-item-image" src="/img/logo/classify.png">
+                    <div class="home-middle-left-list-item-text">分类管理</div>
+                </a>
+            </li>
+            <li class="home-middle-left-list-item">
+                <a href="#">
+                    <img alt="image" class="home-middle-left-list-item-image" src="/img/logo/theme.png">
+                    <div class="home-middle-left-list-item-text">主题管理</div>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div>
+        <iframe class="home-middle-show" name="show" src="/administrator/toWelcome"></iframe>
+    </div>
+    <div class="home-middle-right">
+        <div class="home-middle-right-title">后端数据管理</div>
+        <ul class="home-middle-right-list">
+            <li class="home-middle-right-list-item">
+                <a href="/user/queryUserList" target="show">
+                    <img alt="image" class="home-middle-right-list-item-image" src="/img/logo/user.png">
+                    <div class="home-middle-right-list-item-text">用户管理</div>
+                </a>
+            </li>
+            <li class="home-middle-right-list-item">
+                <a href="/bike/queryBikeListOfSuf" target="show">
+                    <img alt="image" class="home-middle-right-list-item-image" src="/img/logo/product.png">
+                    <div class="home-middle-right-list-item-text">商品管理</div>
+                </a>
+            </li>
+            <!--            <li class="home-middle-right-list-item">-->
+            <!--                <a href="#">-->
+            <!--                    <img alt="image" class="home-middle-right-list-item-image" src="/img/logo/order.png">-->
+            <!--                    <div class="home-middle-right-list-item-text">订单管理</div>-->
+            <!--                </a>-->
+            <!--            </li>-->
+            <li class="home-middle-right-list-item">
+                <a href="/administrator/queryAdministratorList" target="show">
+                    <img alt="image" class="home-middle-right-list-item-image" src="/img/logo/administrator.png">
+                    <div class="home-middle-right-list-item-text">内置账户</div>
+                </a>
+            </li>
+            <li class="home-middle-right-list-item">
+                <a href="#">
+                    <img alt="image" class="home-middle-right-list-item-image" src="/img/logo/system.png">
+                    <div class="home-middle-right-list-item-text">系统管理</div>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="home-footer">
+    <div class="footer-middle">Copyright © 2023 狂徒张三 rights reserved</div>
+</div>
+</body>
+</html>

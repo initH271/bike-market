@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>搜索页面</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}" type="text/css">
+    <style>
+        .user-search {
+            width: 804px;
+            height: 60px;
+            border: 0;
+        }
+
+        .user-search-left {
+            width: 704px;
+            height: 60px;
+            border: 0;
+            float: left;
+        }
+
+        .user-search-left-middle {
+            width: 560px;
+            height: 60px;
+            border: 0;
+            margin-left: 72px;
+        }
+
+        .user-search-left-middle-text {
+            width: 50px;
+            height: 30px;
+            margin-left: 2px;
+            float: left;
+            border-radius: 5px;
+            background: rgba(46, 139, 87, 0.7);
+            border: 0;
+            margin-top: 15px;
+            font-family: "等线 Light";
+        }
+
+        .user-search-left-middle-input {
+            width: 198px;
+            height: 28px;
+            margin-top: 15px;
+            border-radius: 5px;
+            border: 1px solid #000000;
+            float: left;
+            padding: 0;
+            margin-left: 2px;
+            text-align: center;
+        }
+
+        .user-search-left-middle-query {
+            width: 50px;
+            height: 30px;
+            margin-left: 2px;
+            float: left;
+            border-radius: 5px;
+            background: rgba(46, 139, 87, 0.7);
+            border: 0;
+            margin-top: 15px;
+            font-family: "等线 Light";
+        }
+
+        .user-search-right {
+            float: right;
+            width: 100px;
+            height: 60px;
+            text-align: center;
+        }
+
+        .user-search-right-add {
+            margin-top: 15px;
+            width: 50px;
+            height: 30px;
+            border-radius: 5px;
+            background: rgba(46, 139, 87, 0.7);
+            border: 0;
+            font-family: "等线";
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        td {
+            height: 40px;
+            width: 100px;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            border: 1px solid #eaeaea;
+            border-radius: 5px;
+            font-size: 10px;
+            font-family: "等线";
+        }
+
+        .user-data {
+            width: 804px;
+            height: 370px;
+        }
+
+        .user-data-button {
+            width: 40px;
+            height: 20px;
+            border-radius: 3px;
+            background: rgba(46, 139, 87, 0.7);
+            border: 0;
+            line-height: 1px;
+            font-family: "等线";
+        }
+
+        .user-page {
+            width: 804px;
+            height: 45px;
+            text-align: center;
+        }
+
+        .page-up {
+            width: 60px;
+            height: 30px;
+            float: left;
+            text-align: center;
+            margin-left: 327px;
+            margin-top: 7px;
+            border-radius: 3px;
+            background: rgba(46, 139, 87, 0.7);
+            border: 0;
+            font-family: 等线;
+        }
+
+        .page-now {
+            width: 30px;
+            height: 30px;
+            float: left;
+            line-height: 30px;
+            margin-top: 7px;
+            font-size: 15px;
+            font-family: 楷体;
+        }
+
+        .page-down {
+            width: 60px;
+            height: 30px;
+            float: left;
+            text-align: center;
+            margin-top: 7px;
+            border-radius: 3px;
+            background: rgba(46, 139, 87, 0.7);
+            border: 0;
+            font-family: 等线;
+        }
+    </style>
+</head>
+<body>
+<div class="user-search">
+    <div class="user-search-left">
+        <div class="user-search-left-middle">
+            <form action="/user/searchUser" method="post">
+                <button class="user-search-left-middle-text">账号</button>
+                <input class="user-search-left-middle-input" name="account" type="text">
+                <button class="user-search-left-middle-text">姓名</button>
+                <input class="user-search-left-middle-input" name="name" type="text">
+                <input class="user-search-left-middle-query" type="submit" value="查询">
+            </form>
+        </div>
+    </div>
+    <div class="user-search-right">
+        <a href="/user/toAdd">
+            <button class="user-search-right-add">增加</button>
+        </a>
+    </div>
+</div>
+<div class="user-data">
+    <table>
+        <thead>
+        <tr>
+            <td>唯一标识</td>
+            <td>账号</td>
+            <td>密码</td>
+            <td>昵称</td>
+            <td>姓名</td>
+            <td>电话</td>
+            <td>地址</td>
+            <td>操作</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.account}"></td>
+            <td th:text="${user.password}"></td>
+            <td th:text="${user.nickname}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.phone}"></td>
+            <td th:text="${user.address}"></td>
+            <td>
+                <div>
+                    <a th:href="@{'/user/toModify'+${user.id}}">
+                        <button class="user-data-button">修改</button>
+                    </a>
+                    <a th:href="@{'/user/deleteUser?id='+${user.id}}">
+                        <button class="user-data-button">删除</button>
+                    </a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="user-page">
+    <a target="show" th:href="@{'/user/searchUser?pageNow='+${page.getPrePage()}}">
+        <button class="page-up" th:disabled="${page.getPageNum() == 1}">上一页</button>
+    </a>
+    <div class="page-now" th:text="${page.getPageNum()}"></div>
+    <a target="show" th:href="@{'/user/searchUser?pageNow='+${page.getNextPage()}}">
+        <button class="page-down" th:disabled="${page.getPageNum() == page.getPages()}">下一页</button>
+    </a>
+</div>
+</body>
+</html>

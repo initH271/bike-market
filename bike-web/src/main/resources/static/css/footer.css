@@ -1,0 +1,18 @@
+
+.home-footer {
+    width: 1364px;
+    height: 79px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid #eaeaea;
+}
+
+.footer-middle {
+    height: 40px;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 40px;
+    font-family: 楷体;
+    font-size: 16px;
+}

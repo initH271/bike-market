@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>购物车</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}" type="text/css">
+    <style>
+        .user_cart {
+            width: 1037px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .user_cart-middle {
+            width: 805px;
+            margin-left: 116px;
+        }
+
+        .user_cart-middle-text {
+            width: 156px;
+            height: 36px;
+            text-align: center;
+            border-width: thin;
+            border-style: solid;
+            border-radius: 5px;
+            font-size: 14px;
+            font-family: 楷体;
+        }
+
+        .user_cart-middle-data {
+            width: 116px;
+            height: 80px;
+            text-align: center;
+            border-width: thin;
+            border-style: solid;
+            border-radius: 5px;
+            font-size: 14px;
+            font-family: 楷体;
+        }
+
+        .user_cart-middle-data-image {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 40px;
+        }
+
+        .user_cart-middle-data-operate {
+            width: 60px;
+            height: 30px;
+            border-radius: 5px;
+            border: 0;
+            background: rgba(46, 139, 87, 0.7);
+            font-size: 14px;
+            font-family: 楷体;
+        }
+
+        .user_cart-middle-pay {
+            width: 322px;
+            height: 80px;
+            margin-left: 174px;
+            margin-top: 40px;
+        }
+
+        .user_cart-middle-pay-left {
+            width: 158px;
+            height: 38px;
+            float: left;
+            text-align: center;
+            line-height: 40px;
+            font-size: 14px;
+            font-family: 楷体;
+            border-radius: 5px;
+            border-width: thin;
+            border-style: solid;
+        }
+
+        .user_cart-middle-pay-right {
+            width: 160px;
+            height: 40px;
+            float: right;
+            background: rgba(46, 139, 87, 0.7);
+            border-radius: 5px;
+            font-size: 14px;
+            font-family: 楷体;
+            border: 0 solid;
+        }
+    </style>
+</head>
+<body>
+<div class="user_cart">
+    <div class="user_cart-middle">
+        <!-- 接收到error消息弹出警告消息，需要确认关闭，消息内容为红色-->
+
+        <div class="alert alert-danger" role="alert" th:if="${error}" th:text="${error}"></div>
+        <table>
+            <tr>
+                <td class="user_cart-middle-text">名称</td>
+                <td class="user_cart-middle-text">图片</td>
+                <td class="user_cart-middle-text">价格</td>
+                <td class="user_cart-middle-text">操作</td>
+            </tr>
+            <tr th:each="userCart : ${userCarts}">
+                <td class="user_cart-middle-data">
+                    <div th:text="${userCart.bike.name}"></div>
+                </td>
+                <td class="user_cart-middle-data">
+                    <img alt="bike" class="user_cart-middle-data-image" th:src="${userCart.bike.imgPath}">
+                </td>
+                <td class="user_cart-middle-data">
+                    <div th:text="'￥'+${userCart.bike.price}"></div>
+                </td>
+                <td class="user_cart-middle-data">
+                    <a th:href="@{'/userCart/deleteUserCart?id='+${userCart.id}+'&userId='+${session.user.id}}">
+                        <button class="user_cart-middle-data-operate">删除</button>
+                    </a>
+                </td>
+            </tr>
+        </table>
+        <div class="user_cart-middle-pay">
+            <div class="user_cart-middle-pay-left">
+                <div th:text="'需支付：￥'+${sum==null?0:sum}"></div>
+            </div>
+            <div>
+                <a th:href="'/userOrder/ViewUserOrderInfo?userId='+${session.user.id}">
+                    <button class="user_cart-middle-pay-right">结算</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

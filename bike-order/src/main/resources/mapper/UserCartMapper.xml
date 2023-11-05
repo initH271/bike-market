@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bike.bikeorder.mapper.UserCartMapper">
+
+    <resultMap id="UserCartMap" type="com.bike.bikecommon.entity.UserCart">
+        <id column="id" property="id"/>
+        <association property="bike" javaType="com.bike.bikecommon.entity.Bike">
+            <id column="id" property="id"/>
+            <result column="name" property="name"/>
+            <result column="img_path" property="imgPath"/>
+            <result column="price" property="price"/>
+        </association>
+    </resultMap>
+    <insert id="insertUserCart" parameterType="com.bike.bikecommon.entity.UserCart">
+        insert into user_cart(user_id, bike_id)
+        values (#{userId}, #{bikeId})
+    </insert>
+    <delete id="deleteUserCartById" parameterType="com.bike.bikecommon.entity.UserCart">
+        delete
+        from user_cart
+        where id = #{id}
+    </delete>
+    <select id="selectUserCartInfoByUserId" parameterType="com.bike.bikecommon.entity.UserCart" resultMap="UserCartMap">
+        select uc.id, b.id, b.name, b.img_path, b.price
+        from bike b,
+             user_cart uc
+        where uc.user_id = #{userId}
+          and uc.bike_id = b.id
+    </select>
+    <select id="selectBikeIdOfUserCartByUserId" parameterType="com.bike.bikecommon.entity.UserCart"
+            resultType="com.bike.bikecommon.entity.UserCart">
+        select bike_id
+        from user_cart uc
+        where uc.user_id = #{userId}
+    </select>
+    <select id="selectUserCartByBikeId" parameterType="com.bike.bikecommon.entity.UserCart"
+            resultType="com.bike.bikecommon.entity.UserCart">
+        select *
+        from user_cart
+        where user_id = #{userId}
+          and bike_id = #{bikeId}
+    </select>
+    <select id="selectUserCartByUserId" parameterType="Integer" resultType="com.bike.bikecommon.entity.UserCart">
+        select *
+        from user_cart
+        where user_id = #{userId}
+    </select>
+</mapper>

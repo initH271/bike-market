@@ -1,0 +1,10 @@
+spring:
+  thymeleaf:
+    cache: false
+    check-template: true
+    check-template-location: true
+    encoding: utf-8
+    prefix: classpath:/templates  # 模板前缀, 注意如果使用/templates/,那么controller中的视图名称就不能为/home而是home
+    suffix: .html
+    servlet:
+      content-type: text/html

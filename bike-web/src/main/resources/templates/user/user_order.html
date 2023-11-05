@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户订单</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}" type="text/css">
+    <style>
+        .user_order {
+            width: 1020px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .user_order-middle {
+            width: 484px;
+        }
+
+        .user_order-middle-text {
+            width: 156px;
+            height: 36px;
+            text-align: center;
+            border-width: thin;
+            border-style: solid;
+            border-radius: 5px;
+            font-size: 14px;
+            font-family: 楷体;
+        }
+
+        .user_order-middle-data {
+            width: 116px;
+            height: 40px;
+            text-align: center;
+            border-width: thin;
+            border-style: solid;
+            border-radius: 5px;
+            font-size: 14px;
+            font-family: 楷体;
+        }
+
+        .user_order-middle-data-image {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 40px;
+        }
+
+        .user_order-middle-price {
+            text-align: center;
+            line-height: 40px;
+            font-size: 14px;
+            font-family: 楷体;
+        }
+
+        .user_order-middle-blank {
+            width: 484px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+        }
+
+        .user_order-middle-sure {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .user_order-middle-sure-middle {
+            width: 484px;
+            height: 40px;
+            border-radius: 5px;
+            background: rgba(46, 139, 87, 0.7);
+            border: 0;
+            font-size: 16px;
+            font-family: 楷体;
+        }
+    </style>
+</head>
+<body>
+<div class="user_order">
+    <div class="user_order-middle">
+        <table>
+            <tr>
+                <td class="user_order-middle-text">姓名</td>
+                <td class="user_order-middle-text">电话</td>
+                <td class="user_order-middle-text">地址</td>
+            </tr>
+            <tr>
+                <td class="user_order-middle-data">
+                    <div th:text="${user.name}"></div>
+                </td>
+                <td class="user_order-middle-data">
+                    <div th:text="${user.phone}"></div>
+                </td>
+                <td class="user_order-middle-data">
+                    <div th:text="${user.address}"></div>
+                </td>
+            </tr>
+        </table>
+        <div class="user_order-middle-blank"></div>
+
+        <table>
+            <tr>
+                <td class="user_order-middle-text">名称</td>
+                <td class="user_order-middle-text">图片</td>
+                <td class="user_order-middle-text">价格</td>
+            </tr>
+            <tr th:each="userCart : ${userCarts}">
+                <td class="user_order-middle-data">
+                    <div th:text="${userCart.bike.name}"></div>
+                </td>
+                <td class="user_order-middle-data">
+                    <img alt="bike" class="user_order-middle-data-image" th:src="${userCart.bike.imgPath}">
+                </td>
+                <td class="user_order-middle-data">
+                    <div th:text="'￥'+${userCart.bike.price}"></div>
+                </td>
+            </tr>
+        </table>
+        <div class="user_order-middle-price">
+            <div th:text="'总计：￥'+${sum}"></div>
+        </div>
+        <div class="user_order-middle-sure">
+            <a th:href="'/userOrder/addUserOrder?userId='+${session.user.id}">
+                <button class="user_order-middle-sure-middle">确认订单</button>
+            </a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

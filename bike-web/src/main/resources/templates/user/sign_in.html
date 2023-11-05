@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户登录</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}" type="text/css">
+    <style>
+        .sign_in {
+            width: 240px;
+            height: 160px;
+            margin-left: 563px;
+            margin-top: 237px;
+        }
+
+        .sign_in-account {
+            width: 238px;
+            height: 38px;
+            border-radius: 5px;
+            border-width: thin;
+            border-style: solid;
+            border-color: black;
+            margin: 0;
+            padding: 0;
+            background: rgba(255, 255, 255, 0.7);
+            text-align: center;
+            font-size: 14px;
+            font-family: 楷体;
+        }
+
+        .sign_in-password {
+            width: 238px;
+            height: 39px;
+            border-radius: 5px;
+            border-width: thin;
+            border-style: solid;
+            border-color: black;
+            margin: 0;
+            padding: 0;
+            background: rgba(255, 255, 255, 0.7);
+            border-top: 0;
+            text-align: center;
+            font-size: 14px;
+            font-family: 楷体;
+        }
+
+        .sign_in-text {
+            width: 240px;
+            height: 40px;
+            border-radius: 5px;
+        }
+
+        .sign_in-text-left {
+            float: left;
+            text-align: center;
+            line-height: 40px;
+            font-size: 14px;
+            font-family: 楷体;
+        }
+
+        .sign_in-text-right {
+            float: right;
+            text-align: center;
+            line-height: 40px;
+            font-size: 14px;
+            font-family: 楷体;
+        }
+
+        .sign_in-button {
+            width: 240px;
+            height: 40px;
+            border-radius: 5px;
+            background: rgba(46, 139, 87, 0.7);
+            border: 0;
+            font-size: 18px;
+            font-family: 楷体;
+        }
+    </style>
+</head>
+<body>
+<div class="sign_in">
+    <form action="/user/signIn" method="post">
+        <div>
+            <input class="sign_in-account" name="account" placeholder="账号" type="text">
+        </div>
+        <div>
+            <input class="sign_in-password" name="password" placeholder="密码" type="password">
+        </div>
+        <div class="sign_in-text">
+            <div class="sign_in-text-left">
+                <a href="/user/toSignUp">立即注册</a>
+            </div>
+            <div class="sign_in-text-right">
+                <a href="#">忘记密码</a>
+            </div>
+        </div>
+        <div>
+            <input class="sign_in-button" type="submit" value="登录">
+        </div>
+    </form>
+</div>
+</body>
+</html>

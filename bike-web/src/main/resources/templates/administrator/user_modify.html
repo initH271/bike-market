@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户修改</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}" type="text/css">
+    <style>
+        .user_modify {
+            width: 400px;
+            height: 286px;
+            margin-left: 202px;
+            margin-top: 94px;
+        }
+
+        .user_modify-text {
+            width: 405px;
+            height: 40px;
+            margin-bottom: 1px;
+        }
+
+        .user_modify-text-left {
+            width: 98px;
+            height: 38px;
+            float: left;
+            text-align: center;
+            line-height: 40px;
+            font-size: 14px;
+            font-family: 楷体;
+            border-radius: 5px;
+            border: 1px solid #000000;
+        }
+
+        .user_modify-text-right {
+            width: 298px;
+            height: 38px;
+            float: left;
+            border-width: thin;
+            border-style: solid;
+            font-size: 14px;
+            font-family: 楷体;
+            border-radius: 5px;
+            margin-left: 1px;
+            text-align: center;
+            background: white;
+            border-color: black;
+            padding: 0;
+        }
+
+        .user_modify-text-button {
+            width: 401px;
+            height: 40px;
+            border-radius: 5px;
+            background: rgba(46, 139, 87, 0.7);
+            font-size: 16px;
+            border: 0 solid;
+            font-family: 楷体;
+        }
+    </style>
+</head>
+<body>
+<div class="user_modify">
+    <form method="post" th:action="@{'/user/modifyUser?id='+${user.id}}">
+        <div class="user_modify-text">
+            <div class="user_modify-text-left">账号</div>
+            <div>
+                <input class="user_modify-text-right" name="account" th:value="${user.account}" type="text">
+            </div>
+        </div>
+        <div class="user_modify-text">
+            <div class="user_modify-text-left">密码</div>
+            <div>
+                <input class="user_modify-text-right" name="password" th:value="${user.password}" type="text">
+            </div>
+        </div>
+        <div class="user_modify-text">
+            <div class="user_modify-text-left">昵称</div>
+            <div>
+                <input class="user_modify-text-right" name="nickname" th:value="${user.nickname}" type="text">
+            </div>
+        </div>
+        <div class="user_modify-text">
+            <div class="user_modify-text-left">姓名</div>
+            <div>
+                <input class="user_modify-text-right" name="name" th:value="${user.name}" type="text">
+            </div>
+        </div>
+        <div class="user_modify-text">
+            <div class="user_modify-text-left">电话</div>
+            <div>
+                <input class="user_modify-text-right" name="phone" th:value="${user.phone}" type="text">
+            </div>
+        </div>
+        <div class="user_modify-text">
+            <div class="user_modify-text-left">地址</div>
+            <div>
+                <input class="user_modify-text-right" name="address" th:value="${user.address}" type="text">
+            </div>
+        </div>
+        <div>
+            <input class="user_modify-text-button" type="submit" value="修改">
+        </div>
+    </form>
+</div>
+</body>
+</html>

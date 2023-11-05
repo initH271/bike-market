@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>超市首页</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/header.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/footer.css}" type="text/css">
+    <style>
+        .home-show {
+            width: 1037px;
+            margin-left: 173px;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="home-header">
+    <div class="header-common header-left">
+        <div class="header-common header-left-logo">
+            <a href="/bike/queryBikeListOfPre" target="show"><img alt="logo" src="/img/logo/logo.png"></a>
+        </div>
+        <div class="header-common header-left-title">
+            <a href="/bike/queryBikeListOfPre" target="show">自行车超市平台</a>
+        </div>
+    </div>
+    <div class="header-common header-right">
+        <div class="header-common header-right-text1">
+            <div th:if="${session.user == null}">
+                <a href="/user/toSignIn">登录</a>
+                <a href="/user/toSignUp">注册</a>
+            </div>
+            <div th:if="${session.user != null}">
+                <a target="show" th:href="@{'/user/viewUserInfo?id='+${session.user.id}}"
+                   th:text="${session.user.nickname}"></a>
+                <a href="/user/signOut">退出</a>
+            </div>
+        </div>
+        <div class="header-common header-right-text2">
+            <div th:if="${session.user == null}">
+                <a href="/user/toSignIn">购物车</a>
+            </div>
+            <div th:if="${session.user != null}">
+                <a target="show" th:href="'/userCart/viewUserCartInfo?userId='+${session.user.id}">购物车</a>
+            </div>
+        </div>
+    </div>
+</div>
+<iframe class="home-show" name="show" onload="this.height=this.contentWindow.document.body.scrollHeight"
+        src="/bike/queryBikeListOfPre" title="自行车列表"></iframe>
+<div class="home-footer">
+    <div class="footer-middle">Copyright © 2023 狂徒张三 rights reserved</div>
+</div>
+<script>
+</script>
+</body>
+</html>

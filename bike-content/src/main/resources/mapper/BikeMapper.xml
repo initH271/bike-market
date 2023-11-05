@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bike.bikecontent.mapper.BikeMapper">
+    <insert id="insertBike" parameterType="com.bike.bikecommon.entity.Bike">
+        insert into bike
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null and name != ''">
+                name,
+            </if>
+            <if test="imgPath != null and imgPath != ''">
+                img_path,
+            </if>
+            <if test="price != null and price != ''">
+                price,
+            </if>
+            <if test="type != null and type != ''">
+                type,
+            </if>
+            <if test="stockNumber != null and stockNumber != ''">
+                stock_number,
+            </if>
+            <if test="saleNumber != null and saleNumber != ''">
+                sale_number,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null and name != ''">
+                #{name},
+            </if>
+            <if test="imgPath != null and imgPath != ''">
+                #{imgPath},
+            </if>
+            <if test="price != null and price != ''">
+                #{price},
+            </if>
+            <if test="type != null and type != ''">
+                #{type},
+            </if>
+            <if test="stockNumber != null and stockNumber != ''">
+                #{stockNumber},
+            </if>
+            <if test="saleNumber != null and saleNumber != ''">
+                #{saleNumber},
+            </if>
+        </trim>
+    </insert>
+    <delete id="deleteBikeById" parameterType="com.bike.bikecommon.entity.Bike">
+        delete
+        from bike
+        where id = #{id}
+    </delete>
+    <update id="updateBikeById" parameterType="com.bike.bikecommon.entity.Bike">
+        update bike set
+        <trim suffixOverrides=",">
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="imgPath != null and imgPath != ''">
+                img_path = #{imgPath},
+            </if>
+            <if test="price != null and price != ''">
+                price = #{price},
+            </if>
+            <if test="type != null and type != ''">
+                type = #{type},
+            </if>
+            <if test="stockNumber != null and stockNumber != ''">
+                stock_number = #{stockNumber},
+            </if>
+            <if test="saleNumber != null and saleNumber != ''">
+                sale_number = #{saleNumber}
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+    <!--    <select id="selectBikeById" parameterType="com.bike.bikecommon.entity.Bike" resultType="com.bike.bikecommon.entity.Bike">-->
+    <!--        select * from bike where id = #{id}-->
+    <!--    </select>-->
+
+    <select id="selectBikeById" parameterType="Integer" resultType="com.bike.bikecommon.entity.Bike">
+        select *
+        from bike
+        where id = #{id}
+    </select>
+
+    <select id="selectBikeList" resultType="com.bike.bikecommon.entity.Bike">
+        select *
+        from bike
+    </select>
+
+    <select id="selectBikeListByAttribute" parameterType="com.bike.bikecommon.entity.Bike"
+            resultType="com.bike.bikecommon.entity.Bike">
+        select * from bike where
+        <trim suffixOverrides="and">
+            <if test="name != null and name != ''">
+                name like "%"#{name}"%" and
+            </if>
+
+            <if test="type != null and type != ''">
+                type like "%"#{type}"%"
+            </if>
+        </trim>
+    </select>
+
+</mapper>

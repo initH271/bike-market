@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>商品修改</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}" type="text/css">
+    <style>
+        .bike_modify {
+            width: 400px;
+            height: 286px;
+            margin-left: 202px;
+            margin-top: 94px;
+        }
+
+        .bike_modify-text {
+            width: 405px;
+            height: 40px;
+            margin-bottom: 1px;
+        }
+
+        .bike_modify-text-left {
+            width: 98px;
+            height: 38px;
+            float: left;
+            text-align: center;
+            line-height: 40px;
+            font-size: 14px;
+            font-family: 楷体;
+            border-radius: 5px;
+            border: 1px solid #000000;
+        }
+
+        .bike_modify-text-right {
+            width: 298px;
+            height: 38px;
+            float: left;
+            border-width: thin;
+            border-style: solid;
+            font-size: 14px;
+            font-family: 楷体;
+            border-radius: 5px;
+            margin-left: 1px;
+            text-align: center;
+            background: white;
+            border-color: black;
+            padding: 0;
+        }
+
+        .bike_modify-text-button {
+            width: 401px;
+            height: 40px;
+            border-radius: 5px;
+            background: rgba(46, 139, 87, 0.7);
+            font-size: 16px;
+            border: 0 solid;
+            font-family: 楷体;
+        }
+    </style>
+</head>
+<body>
+<div class="bike_modify">
+    <form method="post" th:action="@{'/bike/modifyBike?id='+${bike.id}}">
+        <div class="bike_modify-text">
+            <div class="bike_modify-text-left">名称</div>
+            <div>
+                <input class="bike_modify-text-right" name="name" th:value="${bike.name}" type="text">
+            </div>
+        </div>
+        <div class="bike_modify-text">
+            <div class="bike_modify-text-left">图片</div>
+            <div>
+                <input class="bike_modify-text-right" name="imgPath" th:value="${bike.imgPath}" type="text">
+            </div>
+        </div>
+        <div class="bike_modify-text">
+            <div class="bike_modify-text-left">价格</div>
+            <div>
+                <input class="bike_modify-text-right" name="price" th:value="${bike.price}" type="text">
+            </div>
+        </div>
+        <div class="bike_modify-text">
+            <div class="bike_modify-text-left">类型</div>
+            <div>
+                <input class="bike_modify-text-right" name="type" th:value="${bike.type}" type="text">
+            </div>
+        </div>
+        <div class="bike_modify-text">
+            <div class="bike_modify-text-left">库存</div>
+            <div>
+                <input class="bike_modify-text-right" name="stockNumber" th:value="${bike.stockNumber}" type="text">
+            </div>
+        </div>
+        <div class="bike_modify-text">
+            <div class="bike_modify-text-left">销售</div>
+            <div>
+                <input class="bike_modify-text-right" name="saleNumber" th:value="${bike.saleNumber}" type="text">
+            </div>
+        </div>
+        <div>
+            <input class="bike_modify-text-button" type="submit" value="修改">
+        </div>
+    </form>
+</div>
+</body>
+</html>

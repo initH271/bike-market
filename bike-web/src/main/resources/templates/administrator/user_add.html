@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户添加</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}" type="text/css">
+    <style>
+        .user {
+            height: 475px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .user_add {
+            width: 400px;
+            height: 286px;
+        }
+
+        .user_add-text {
+            width: 405px;
+            height: 40px;
+            margin-bottom: 1px;
+        }
+
+        .user_add-text-left {
+            width: 98px;
+            height: 38px;
+            float: left;
+            text-align: center;
+            line-height: 40px;
+            font-size: 14px;
+            font-family: 楷体;
+            border-radius: 5px;
+            border: 1px solid #000000;
+        }
+
+        .user_add-text-right {
+            width: 298px;
+            height: 38px;
+            float: left;
+            padding: 0;
+            border-width: thin;
+            border-style: solid;
+            font-size: 14px;
+            font-family: 楷体;
+            border-radius: 5px;
+            margin-left: 1px;
+            text-align: center;
+            background: white;
+            border-color: black;
+        }
+
+        .user_add-text-button {
+            width: 401px;
+            height: 40px;
+            border-radius: 5px;
+            background: rgba(46, 139, 87, 0.7);
+            font-size: 16px;
+            border: 0 solid;
+            font-family: 楷体;
+        }
+    </style>
+</head>
+<body>
+<div class="user">
+    <div class="user_add">
+        <form action="/user/addUser" method="post">
+            <div class="user_add-text">
+                <div class="user_add-text-left">账号</div>
+                <div>
+                    <input class="user_add-text-right" name="account" type="text">
+                </div>
+            </div>
+            <div class="user_add-text">
+                <div class="user_add-text-left">密码</div>
+                <div>
+                    <input class="user_add-text-right" name="password" type="text">
+                </div>
+            </div>
+            <div class="user_add-text">
+                <div class="user_add-text-left">昵称</div>
+                <div>
+                    <input class="user_add-text-right" name="nickname" type="text">
+                </div>
+            </div>
+            <div class="user_add-text">
+                <div class="user_add-text-left">姓名</div>
+                <div>
+                    <input class="user_add-text-right" name="name" type="text">
+                </div>
+            </div>
+            <div class="user_add-text">
+                <div class="user_add-text-left">电话</div>
+                <div>
+                    <input class="user_add-text-right" name="phone" type="text">
+                </div>
+            </div>
+            <div class="user_add-text">
+                <div class="user_add-text-left">地址</div>
+                <div>
+                    <input class="user_add-text-right" name="address" type="text">
+                </div>
+            </div>
+            <div>
+                <input class="user_add-text-button" type="submit" value="增加">
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

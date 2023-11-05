@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bike.bikeorder.mapper.UserOrderMapper">
+    <resultMap id="UserCartMap" type="com.bike.bikecommon.entity.UserCart">
+        <association property="bike" javaType="com.bike.bikecommon.entity.Bike">
+            <id column="id" property="id"/>
+            <result column="name" property="name"/>
+            <result column="img_path" property="imgPath"/>
+            <result column="price" property="price"/>
+        </association>
+    </resultMap>
+
+    <resultMap id="UserOrderMap" type="com.bike.bikecommon.entity.UserOrder">
+        <id column="id" property="id"/>
+        <association property="userOrderInfo" javaType="com.bike.bikecommon.entity.UserOrderInfo">
+            <id column="id" property="id"/>
+            <result column="date_time" property="dateTime"/>
+            <result column="code" property="code"/>
+            <result column="status" property="status"/>
+        </association>
+        <association property="bike" javaType="com.bike.bikecommon.entity.Bike">
+            <result column="img_path" property="imgPath"/>
+            <result column="name" property="name"/>
+            <result column="price" property="price"/>
+        </association>
+    </resultMap>
+    <select id="selectUserInfoByUserId" parameterType="com.bike.bikecommon.entity.UserOrder"
+            resultType="com.bike.bikecommon.entity.User">
+        select id, name, phone, address
+        from user
+        where id = #{userId}
+    </select>
+    <select id="selectUserCartInfoByUserId" parameterType="com.bike.bikecommon.entity.UserOrder"
+            resultMap="UserCartMap">
+        select b.id, b.name, b.img_path, b.price
+        from bike b,
+             user_cart uc
+        where uc.user_id = #{userId}
+          and uc.bike_id = b.id
+    </select>
+    <insert id="insertUserOrderInfo" parameterType="com.bike.bikecommon.entity.UserOrderInfo">
+        insert into user_order_info(date_time, code, status)
+        values (#{dateTime}, #{code}, #{status})
+    </insert>
+    <select id="selectUserOrderInfoByCode" parameterType="com.bike.bikecommon.entity.UserOrderInfo"
+            resultType="com.bike.bikecommon.entity.UserOrderInfo">
+        select id
+        from user_order_info
+        where code = #{code}
+    </select>
+    <insert id="insertUserOrder" parameterType="com.bike.bikecommon.entity.UserOrder">
+        insert into user_order(user_id, bike_id, user_order_info_id)
+        values (#{userId}, #{bikeId}, #{userOrderInfoId})
+    </insert>
+    <select id="selectUserOrderList" parameterType="com.bike.bikecommon.entity.UserOrder" resultMap="UserOrderMap">
+        select uo.id, uoi.date_time, uoi.code, uoi.status, b.name, b.img_path, b.price
+        from user_order uo,
+             user_order_info uoi,
+             bike b
+        where uo.user_id = #{userId}
+          and uoi.id = uo.user_order_info_id
+          and b.id = uo.bike_id
+    </select>
+    <select id="selectUserOrderListByUserId" resultType="com.bike.bikecommon.entity.UserOrder">
+        select *
+        from user_order
+        where user_id = #{userId}
+    </select>
+    <select id="selectUserOrderInfoByUserId" resultType="com.bike.bikecommon.entity.UserOrderInfo">
+        select uoi.*
+        from user_order uo,
+             user_order_info uoi
+        where uo.user_id = #{userId}
+          and uoi.id = uo.user_order_info_id
+    </select>
+</mapper>

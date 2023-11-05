@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>管理员登录</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}" type="text/css">
+    <style>
+        .sign_in {
+            width: 240px;
+            height: 160px;
+            margin-left: 563px;
+            margin-top: 237px;
+        }
+
+        .sign_in-account {
+            width: 238px;
+            height: 38px;
+            border-radius: 5px;
+            border-width: thin;
+            border-style: solid;
+            border-color: black;
+            margin: 0;
+            padding: 0;
+            background: rgba(255, 255, 255, 0.7);
+            text-align: center;
+            font-size: 14px;
+            font-family: 楷体;
+        }
+
+        .sign_in-password {
+            width: 238px;
+            height: 39px;
+            border-radius: 5px;
+            border-width: thin;
+            border-style: solid;
+            border-color: black;
+            margin: 0;
+            padding: 0;
+            background: rgba(255, 255, 255, 0.7);
+            border-top: 0;
+            text-align: center;
+            font-size: 14px;
+            font-family: 楷体;
+        }
+
+        .sign_in-text {
+            width: 240px;
+            height: 40px;
+            border-radius: 5px;
+        }
+
+        .sign_in-text-middle {
+            width: 240px;
+            height: 20px;
+        }
+
+        .sign_in-text-middle-left {
+            width: 80px;
+            height: 20px;
+            float: left;
+            margin-top: 12px;
+        }
+
+        .sign_in-text-middle-right {
+            width: 80px;
+            height: 20px;
+            float: right;
+            margin-top: 12px;
+        }
+
+        .sign_in-text-middle-check {
+            width: 13px;
+            height: 13px;
+            float: left;
+            margin: 0;
+        }
+
+        .sign_in-text-middle-text {
+            width: 65px;
+            height: 15px;
+            float: right;
+            text-align: center;
+            line-height: 15px;
+            font-size: 14px;
+            font-family: 楷体;
+        }
+
+        .sign_in-button {
+            width: 240px;
+            height: 40px;
+            border-radius: 5px;
+            background: rgba(46, 139, 87, 0.7);
+            font-size: 18px;
+            font-family: 楷体;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="sign_in">
+    <form action="/administrator/signIn" method="post">
+        <div>
+            <input class="sign_in-common sign_in-account" name="account" placeholder="账号" type="text">
+        </div>
+        <div>
+            <input class="sign_in-common sign_in-password" name="password" placeholder="密码" type="password">
+        </div>
+        <div class="sign_in-text">
+            <div class="sign_in-text-middle">
+                <div class="sign_in-text-middle-left">
+                    <div>
+                        <input class="sign_in-text-middle-check" type="checkbox">
+                    </div>
+                    <div class="sign_in-text-middle-text">自动登录</div>
+                </div>
+                <div class="sign_in-text-middle-right">
+                    <div>
+                        <input class="sign_in-text-middle-check" type="checkbox">
+                    </div>
+                    <div class="sign_in-text-middle-text">记住密码</div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <input class="sign_in-button" type="submit" value="登录">
+        </div>
+    </form>
+</div>
+</body>
+</html>

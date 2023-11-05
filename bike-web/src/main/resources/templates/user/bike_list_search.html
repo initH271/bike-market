@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>商品搜索</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}" type="text/css">
+    <style>
+        .show-search {
+            height: 80px;
+            border: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .search-left {
+            width: 552px;
+            height: 60px;
+            border: 0;
+            float: left;
+        }
+
+        .search-left-middle {
+            width: 554px;
+            height: 60px;
+            border: 0;
+        }
+
+        .search-left-middle-input {
+            width: 498px;
+            height: 28px;
+            margin-top: 15px;
+            border-radius: 5px;
+            border: 1px solid #000000;
+            float: left;
+            padding: 0;
+            margin-left: 2px;
+            text-align: center;
+            font-size: 4px;
+        }
+
+        .search-left-middle-query {
+            width: 50px;
+            height: 30px;
+            margin-left: 2px;
+            float: right;
+            border-radius: 5px;
+            background: rgba(46, 139, 87, 0.7);
+            border: 0;
+            margin-top: 15px;
+            font-family: "等线";
+        }
+
+        .show {
+            width: 1037px;
+            height: 912px;
+        }
+
+        .show-product {
+            width: 200px;
+            height: 300px;
+            border-radius: 5px;
+            border-style: solid;
+            border-width: thin;
+            border-color: rgb(133, 133, 133);
+            float: left;
+            margin: 1px;
+        }
+
+        .show-product-name {
+            width: 200px;
+            height: 48px;
+            text-align: center;
+            line-height: 50px;
+            font-family: 楷体;
+            font-size: 14px;
+        }
+
+        .show-product-image {
+            width: 200px;
+            height: 200px;
+            border-color: rgb(133, 133, 133);
+        }
+
+        .show-product-price {
+            width: 200px;
+            height: 48px;
+            text-align: center;
+            line-height: 50px;
+            font-family: 楷体;
+            font-size: 14px;
+        }
+
+        .show-page {
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            line-height: 30px;
+        }
+
+        .page-middle {
+            width: 150px;
+            height: 30px;
+
+        }
+
+        .page-up {
+            width: 60px;
+            height: 30px;
+            float: left;
+            border-radius: 5px;
+            background: rgba(46, 139, 87, 0.7);
+            font-size: 14px;
+            font-family: 等线;
+            border: 0;
+        }
+
+        .page-now {
+            width: 30px;
+            height: 30px;
+            float: left;
+            font-size: 14px;
+            font-family: 等线;
+        }
+
+        .page-down {
+            width: 60px;
+            height: 30px;
+            float: left;
+            border-radius: 5px;
+            background: rgba(46, 139, 87, 0.7);
+            font-size: 14px;
+            font-family: 等线;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="show-search">
+    <div class="search-left">
+        <div class="search-left-middle">
+            <form action="/bike/searchBikeOfPre" method="post">
+                <input class="search-left-middle-input" name="name" type="text">
+                <input class="search-left-middle-query" type="submit" value="查询">
+            </form>
+        </div>
+    </div>
+</div>
+<div class="show">
+    <div class="show-product" th:each="bike : ${bikes}">
+        <div class="show-product-name">
+            <a href="" th:text="${bike.name}"></a>
+        </div>
+        <div>
+            <a href=""> <img alt="bike" class="show-product-image" th:src="@{${bike.imgPath}}"> </a>
+        </div>
+        <div class="show-product-price">
+            ￥<a href="" th:text="${bike.price}"></a>
+        </div>
+    </div>
+</div>
+<div class="show-page">
+    <div class="page-middle">
+        <a target="show" th:href="@{'/bike/searchBikeOfPre?pageNow='+${page.getPrePage()}}">
+            <button class="page-up" th:disabled="${page.getPageNum() == 1}">上一页</button>
+        </a>
+        <div class="page-now" th:text="${page.getPageNum()}"></div>
+        <a target="show" th:href="@{'/bike/searchBikeOfPre?pageNow='+${page.getNextPage()}}">
+            <button class="page-down" th:disabled="${page.getPageNum() == page.getPages()}">下一页</button>
+        </a>
+    </div>
+</div>
+</body>
+</html>

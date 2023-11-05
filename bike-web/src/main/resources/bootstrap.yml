@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: web-service
+  cloud:
+    nacos:
+      server-addr: 127.0.0.1:8848
+      discovery:
+        group: bike # 分组名称
+        cluster-name: HZ # 集群名称
+        namespace: dd141c86-ed59-4699-8158-1ba90a08e1a2
+
+# 服务发现配置
+user-service: # 微服务user-service配置
+  ribbon:
+    NFLoadBalancerRuleClassName: com.alibaba.cloud.nacos.ribbon.NacosRule  # 负载均衡策略: 优先寻找同集群服务
+
+# feign配置
+feign:
+  autoconfiguration:
+    jackson:
+      enabled: true
+  client:
+    config:
+      default: # 全局配置
+        logger-level: full # feign日志级别
+server:
+  port: 8080
